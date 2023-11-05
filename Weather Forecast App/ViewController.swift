@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    private let service = Service()
     
     private lazy var backgroundView : UIView = {
         let imageView = UIImageView(frame: .zero)
@@ -202,6 +203,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        
+        service.fetchData(city: City(lat: "-23.6814346", lon: "-46.9249599", name: "São Paulo")) { message in
+            print(message)
+            
+        }
     }
     
     
@@ -294,11 +300,7 @@ class ViewController: UIViewController {
             dailyForecastTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             
         ])
-        
-        
     }
-    
-    
 }
 
 
@@ -313,7 +315,7 @@ extension ViewController: UICollectionViewDataSource {
         
         return cell
     }
-    
+        
     
 }
 
